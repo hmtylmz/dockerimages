@@ -1,0 +1,16 @@
+# Extend the previous Dockerfile
+FROM ubuntu22-video-node:latest
+
+# Set environment variables to avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update the package list and install Node.js
+RUN npm install -g playwright
+
+# Verify the installation of Node.js and npm
+RUN playwright install-deps
+
+RUN playwright install firefox
+
+# Set the default command
+CMD ["bash"]
